@@ -1,0 +1,23 @@
+.outer {
+    border: 1px solid black;
+     height: 100%;
+    width: 100%;
+}
+
+.inner {
+    background-color: #AED6F1;
+    border: 1px solid grey;
+    padding: 250px 25px 425px 50px;
+    margin: 5px;
+}
+
+div.txt{
+    text-align: left;
+    position: absolute; 
+    top: 5px; 
+    left: 50px;
+}
+
+.dib {
+	display: inline-block;
+}

@@ -1,0 +1,55 @@
+<html ng-app ="App">
+<head>
+  <link rel="stylesheet" href="css/base.css" />
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js" type="text/javascript"></script>
+  <script src = "js/index.js"></script>
+</head>
+<body>
+	<div class = "outer">
+	  <div class = "inner">
+	   <div class = "txt">
+	     <h1>Data Visualizer</h1>
+	      <div ng-controller="Welcome">
+	         <p>{{error}}</p>
+		     <input type="text" placeholder="Search for Movie" ng-model="name" />
+		     <input type="submit" value="Search" ng-click="search(name)"/>
+			 <table>
+		        <tr>
+			        <th>Movie</th>
+			        <th>Released Year</th>
+		        </tr>
+		        <tr ng-repeat="movie in movieResults">
+			        <td>{{movie.name}}</td>
+			        <td>{{movie.releaseYear}}</td>
+		        </tr>
+			 </table>
+		     <div>
+			     <div class="dib">
+			     	<select ng-model="year1">
+		         		<option ng-repeat="x in yearFrom">{{x}}</option>
+		         	</select>
+		         </div>
+		         <div class="dib"><h4>To</h4></div>
+		         <div class="dib">
+		         	<select ng-model="year2">
+		         		<option ng-repeat="y in yearTo">{{y}}</option>
+		         	</select>
+		         </div>
+			     <div class="dib"><input type="submit" value="Search1" ng-click="search1(year1,year2)"/></div>
+		     </div>
+		     <table>
+			 	<tr>
+					<th>Movie</th>
+					<th>Released Year</th>
+			    </tr>
+			    <tr ng-repeat="movie in selectedYear">
+				    <td>{{movie.name}}</td>
+				    <td>{{movie.releaseYear}}</td>
+			    </tr>
+			 </table>
+	      </div>
+	   </div>
+	  </div>
+	</div>
+</body>
+</html>
