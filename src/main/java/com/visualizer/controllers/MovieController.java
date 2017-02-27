@@ -23,28 +23,28 @@ public class MovieController {
 	@RequestMapping("/")
    public String greeting(@RequestParam(value="name", required=false, defaultValue="world") String name, Model model){
 	   model.addAttribute("name", name);
-	   return "index";
+	   return "base";
    }
    
    @RequestMapping("/movies/{name}")
-   public @ResponseBody  List<Movie> getMovie(@PathVariable(value="name") String name) {
-		return movieService.getMovie(name);
+   public @ResponseBody  List<Movie> getAllMovies(@PathVariable(value="name") String name) {
+		return movieService.getAllMovies(name);
 	}
    
    @RequestMapping("/movies")
-   public @ResponseBody  List<Movie> getYear(@RequestParam(value="startYear", required=false) String year1, 
+   public @ResponseBody  List<Movie> getAllYears(@RequestParam(value="startYear", required=false) String year1, 
 		   @RequestParam(value="endYear", required=false) String year2 ) {
 	   if (year1 != null && year2 != null) {
 		   try {
 			   int startYear = Integer.parseInt(year1);
 			   int endYear = Integer.parseInt(year2);
-			   return movieService.getYear(startYear, endYear);
+			   return movieService.getAllYears(startYear, endYear);
 		   } catch(NumberFormatException e) {
 			   throw new IllegalArgumentException(e.getMessage());
 		   }
 	   } 
 	   else {
-		   return movieService.listAllMovies(); 
+		   return movieService.listAllMovies();
 	   }
 
 	}

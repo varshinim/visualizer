@@ -1,0 +1,17 @@
+<script type="text/ng-template" id="search">
+<div>
+    <p>{{error}}</p>
+   <input type="text" placeholder="Search for Movie" ng-model="name" />
+   <input type="submit" value="Search" ng-click="search(name)"/>
+	<table>
+      <tr>
+       <th>Movie</th>
+       <th>Released Year</th>
+      </tr>
+      <tr ng-repeat="movie in movieResults">
+       <td>{{movie.name}}</td>
+       <td>{{movie.releaseYear}}</td>
+      </tr>
+	</table>
+</div>
+</script>	
