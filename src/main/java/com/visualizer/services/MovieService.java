@@ -21,10 +21,14 @@ public class MovieService {
 		return movies;
 	}
 	
-	public List<Movie> getAllMovies(String name) {
+	public List<Movie> getAllMovies(String searchTerm) {
 		List<Movie> movies = new ArrayList<>();
-		movieDao.findByName(name).forEach(movies::add);
+		movieDao.findByName(searchTerm).forEach(movies::add);
 		return movies;
+	}
+	
+	public Movie getMovie(Integer id) {
+		return movieDao.findOne(id);
 	}
 	
 	public List<Movie> getAllYears(int year1, int year2) {

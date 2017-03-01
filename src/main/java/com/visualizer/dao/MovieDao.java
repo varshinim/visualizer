@@ -23,12 +23,20 @@ public class MovieDao {
 	};
 	
 	@SuppressWarnings("unchecked")
-	public List<Movie> findByName(String name){		
-		List<Movie> movies = em.createQuery("select m from Movie m where title = :name")
-	                .setParameter("name", name)
+	public List<Movie> findByName(String searchTerm){		
+		List<Movie> movies = em.createQuery("select m from Movie m where title = :searchTerm")
+	                .setParameter("searchTerm", searchTerm)
 	                .getResultList();
 
 	    return movies;
+	};
+	
+	public Movie findOne(Integer id){		
+		Movie movie = (Movie) em.createQuery("select m from Movie m where m.id = :id")
+				.setParameter("id", id)
+				.getSingleResult();
+
+	    return movie;
 	};
 	
 	@SuppressWarnings("unchecked")

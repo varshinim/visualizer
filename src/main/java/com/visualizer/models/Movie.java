@@ -1,11 +1,16 @@
 package com.visualizer.models;
 
 import java.io.Serializable;
+import java.util.List;
+import java.util.Set;
 
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -30,6 +35,16 @@ public class Movie implements Serializable{
 	private String actor2;
 	private String actor3;
 	
+	@OneToMany(mappedBy = "movie") 
+	private Set<Locations> locations;
+	public Set<Locations> getLocations() {
+		return locations;
+	}
+
+	public void setLocations(Set<Locations> locations) {
+		this.locations = locations;
+	}
+
 	public Movie() {
 		
 	}
@@ -43,8 +58,8 @@ public class Movie implements Serializable{
 		this.setWriter(writer);
 		this.setActor1(actor1);
 		this.setActor2(actor2);
-		this.setActor3(actor3);	
-		}
+		this.setActor3(actor3);
+	}
 	
 	public Integer getId() {
 		return id;
@@ -62,13 +77,6 @@ public class Movie implements Serializable{
 		this.writer = writer;
 	}
 	
-//	public String getLocations() {
-//		return locations;
-//	}
-//
-//	public void setLocations(String locations) {
-//		this.locations = locations;
-//	}
 //
 //	public String getFunFacts() {
 //		return funFacts;

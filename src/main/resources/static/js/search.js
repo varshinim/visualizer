@@ -18,7 +18,7 @@
 	
 		$scope.search = function(name){
 			if (name) {
-				$http.get("/movies/"+name).then(selectedMovie, onError);
+				$http.get("/search?q=" +name).then(selectedMovie, onError);
 			} else {
 				onError();
 			}

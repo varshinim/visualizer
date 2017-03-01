@@ -1,3 +1,4 @@
+
 package com.visualizer.controllers;
 
 import java.util.List;
@@ -26,9 +27,14 @@ public class MovieController {
 	   return "base";
    }
    
-   @RequestMapping("/movies/{name}")
-   public @ResponseBody  List<Movie> getAllMovies(@PathVariable(value="name") String name) {
-		return movieService.getAllMovies(name);
+   @RequestMapping("/search")
+   public @ResponseBody  List<Movie> getAllMovies(@RequestParam(value="q", required=true) String searchTerm) {
+		return movieService.getAllMovies(searchTerm);
+	}
+   
+   @RequestMapping("/movies/{id}")
+   public @ResponseBody  Movie getMovie(@PathVariable(value="id") Integer id) {
+		return movieService.getMovie(id);
 	}
    
    @RequestMapping("/movies")
