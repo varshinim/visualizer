@@ -1,15 +1,13 @@
-.outer {
-    border: 1px solid black;
-}
-.inner {
-    background-color: #AED6F1;
-    border: 1px solid grey;
-    margin: 5px;
-}
+
 .header{
+	background-image: url("../images/dataviz-header.jpg");
+	background-size: cover;
     color: white;
-    background-color: black;
     text-align: center;
+    min-height: 15%;
+}
+h1{
+	margin-bottom: 0px;
 }
 .footer{
     color: white;
@@ -24,19 +22,84 @@ body {
     width: 100%;
     height: 100%;
     border: 1px solid grey;
-    overflow: auto;
+    overflow: scroll;
+    background-color: #AED6F1;
 }
-.left{
-    display: inline-block;
-    width: 10%;
+nav {
+    float: left;
     text-align: left;
+    width: 10%;
+    height: 100%;
+    margin: 0;
+    padding: 1em 1em 1em 0em;
+}
+nav ul li{
+    list-style-type: none;
+    padding: 0;
+    height: 45px;
+}
+nav ul li a {
+    text-decoration: none;
+    background: #339933;
+    color: white;
+    padding: 10px;
+}
+nav ul li a:hover{
+	background-color: #00cc66;
+	box-shadow: 0px 1px 1px #666;
+	text-decoration: underline;
+}
+nav ul li a:active{ 
+    background-color: #ffcccc; 
 }
 .right{
     display: inline-block;
     width: 80%;
-    text-align: center;
-    border-left: 2px solid grey
+    height: 100%;
+    text-align: left;
+    padding: 1em 5.8em 1em 1em;
+    border-left: 2px solid grey;
+    overflow: scroll;
+    background: #ffccb3;
+}
+.movie-details {
+    max-height: 100px;
+    transition: .5s;
+    max-width: 500px;
+}
+.movie-details.hidden {
+    max-height: 0;
+} 
+.div-table{
+    display:table;         
+    width:auto;        
+    border-spacing:5px;/*cellspacing:poor IE support for  this*/
+}
+.div-table-row{
+    display:table-row;
+    width:auto;
+    clear:both;
+}	
+.div-table-col{
+	float:left;/*fix for  buggy browsers*/
+    display:table-column;         
+    width:200px;  
+}
+.div-table-head{
+	float:left;/*fix for  buggy browsers*/
+    display:table-head;         
+    width:200px; 
+    font-weight: bold; 
 }
 .dib{
 	display: inline-block;
+}
+input,select{
+    border: 0;
+    padding: 5px;
+    font-size: 10px;
+}
+input[type="submit"]{
+    background: #0066cc;
+    color: white;
 }

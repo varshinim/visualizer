@@ -7,23 +7,21 @@
   <script src = "js/movies.js"></script>
   <script src = "js/base.js"></script>
 </head>
-<body>
-	<div class="outer">
-	 <div class="inner">
-	   <div class="header"><h1>Data Visualizer</h1></div>
-	   <div class="container">
-		   <div class="left">
-               <p><a href="#/">Home</a></p>
-			   <p><a href="#search">Search</a></p>
-			   <p><a href="#movies">Movies</a></p>
-		   </div>
-		   <div class="right">
-		       <div ng-view="true"></div>
-		   </div>
-	   </div>
-       <div class="footer">Copyright &copy; Varshini.com</div>
-     </div>
-	</div>
+<body>	
+  <div class="header"><h1>Data Visualizer</h1></div>
+  <div class="container">
+   <nav>
+	   <ul>
+	    <li><a href="#/">Home</a></li>
+	    <li><a href="#search">Search</a></li>
+	    <li><a href="#movies">Movies</a></li>
+ 	   </ul>
+   </nav>
+   <div class="right">
+       <div ng-view="true"></div>
+   </div>
+  </div>
+  <div class="footer">Copyright &copy; Varshini.com</div>
 </body>
 <script type="text/ng-template" id="home">
 <div>
@@ -32,13 +30,13 @@
 </script>
 <script type="text/ng-template" id="search">
 <div>
-    <p>{{error}}</p>
+   <p>{{error}}</p>
    <input type="text" placeholder="Search for Movie" ng-model="name" />
    <input type="submit" value="Search" ng-click="search(name)"/>
 	<table>
       <tr>
        <th>Movie</th>
-       <th>Released Year</th>
+       <th>Release Year</th>
       </tr>
       <tr ng-repeat="movie in movieResults">
        <td>{{movie.title}}</td>
@@ -49,28 +47,45 @@
 </script>
 <script type="text/ng-template" id="movies">
 <div>
-    <div class="dib">
+     <div class="dib">
        <select ng-model="year1">
        		<option ng-repeat="x in getStartYear()">{{x}}</option>
        </select>
-       </div>
-       <div class="dib"><h4>To</h4></div>
-       <div class="dib">
+     </div>
+     <div class="dib"><h4>To</h4></div>
+     <div class="dib">
        	<select ng-model="year2">
        		<option ng-repeat="y in getEndYear()">{{y}}</option>
        	</select>
-       </div>
-    <div class="dib"><input type="submit" value="Search1" ng-click="search1(year1,year2)"/></div>
+      </div>
+    <div class="dib"><input type="submit" value="Search1" ng-click="moviesByYear(year1,year2)"/></div>
 </div>
-<table>
-	<tr>
-	<th>Movie</th>
-	<th>Released Year</th>
-   </tr>
-   <tr ng-repeat="movie in selectedYear">
-    <td>{{movie.title}}</td>
-    <td>{{movie.releaseYear}}</td>
-   </tr>
-</table>
+<div class="dib">
+<div class="div-table">
+   <div class="div-table-row">
+      <div class="div-table-head">Movie</div>
+      <div class="div-table-head">Release Year</div>
+   </div>
+   <div class="div-table-row" ng-repeat="movie in selectedYear">
+      <div class="div-table-col"><a ng-click="onMovieClick(movie)">{{movie.title}}</a></div>
+      <div class="div-table-col">{{movie.releaseYear}}</div>
+   </div>
+</div></div>
+ <div class="dib">
+<div class="div-table">
+   <div class="movie-details" ng-class="{ 'hidden': ! showDetails }">
+    <div ng-repeat="location in selectedMovie.locations">
+    <p>{{location.locationName}}</p>
+    <p>{{location.funFacts}}</p>
+    </div>
+   	<p>{{selectedMovie.productionCompany}}</p>
+   	<p>{{selectedMovie.distributor}}</p>
+    <p>{{selectedMovie.director}}</p>
+    <p>{{selectedMovie.writer}}</p>
+    <p>{{selectedMovie.actor1}}</p>
+    <p>{{selectedMovie.actor2}}</p>
+    <p>{{selectedMovie.actor3}}</p>
+   </div>
+ </div></div>
 </script>		
 </html>

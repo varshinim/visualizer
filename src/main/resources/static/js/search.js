@@ -9,7 +9,7 @@
 		};
 		
 		var onError = function(reason){
-			$scope.error = "Could not find";
+			$scope.error = "Could not find the movie";
 		};
 		
 		var selectedMovie = function(response){
@@ -19,8 +19,6 @@
 		$scope.search = function(name){
 			if (name) {
 				$http.get("/search?q=" +name).then(selectedMovie, onError);
-			} else {
-				onError();
 			}
 		};
 	}

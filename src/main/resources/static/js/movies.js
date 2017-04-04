@@ -25,6 +25,10 @@
 		return arr;
 	}
 	
+	var onError = function(reason){
+		$scope.error = "Could not find the year";
+	};
+	
 	var selectedYear = function(response){
 		$scope.selectedYear = response.data;
 	};
@@ -37,6 +41,11 @@
 		} else {
 			$http.get("/movies").then(selectedYear, onError);
 		}
+	};
+	
+	$scope.onMovieClick = function(movie) {
+		$scope.showDetails = true;
+		$scope.selectedMovie = movie;
 	};
 }
 })();

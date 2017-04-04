@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -32,8 +33,8 @@ public class MovieController {
 		return movieService.getAllMovies(searchTerm);
 	}
    
-   @RequestMapping("/movies/{id}")
-   public @ResponseBody  Movie getMovie(@PathVariable(value="id") Integer id) {
+   @RequestMapping(value = "/movies/{id}", method = RequestMethod.GET)
+   public @ResponseBody Movie getMovie(@PathVariable(value="id") Integer id) {
 		return movieService.getMovie(id);
 	}
    
