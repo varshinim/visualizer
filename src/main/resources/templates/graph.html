@@ -1,0 +1,16 @@
+<script type="text/ng-template" id="graph">
+<div>
+    <div class="dib">
+    	<select ng-model="year1">
+       		<option ng-repeat="x in getStartYear()">{{x}}</option>
+       	</select>
+       </div>
+       <div class="dib"><h4>To</h4></div>
+       <div class="dib">
+       	<select ng-model="year2">
+       		<option ng-repeat="y in getEndYear()">{{y}}</option>
+       	</select>
+       </div>
+    <div class="dib"><input type="submit" value="Search1" ng-click="search1(year1,year2)"/></div>
+</div>
+</script>

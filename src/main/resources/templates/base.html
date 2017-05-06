@@ -1,11 +1,13 @@
 <html ng-app ="app">
 <head>
-  <link rel="stylesheet" href="css/base.css" />
+  <!-- inject:css -->
+ <!-- endinject -->
+ <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/nvd3/1.8.5/nv.d3.min.css" />
   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js" type="text/javascript"></script>
   <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular-route.js"></script>
-  <script src = "js/search.js"></script>
-  <script src = "js/movies.js"></script>
-  <script src = "js/base.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.3/d3.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/nvd3/1.8.5/nv.d3.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-nvd3/1.0.9/angular-nvd3.min.js"></script>
 </head>
 <body>	
   <div class="header"><h1>Data Visualizer</h1></div>
@@ -15,6 +17,7 @@
 	    <li><a href="#/">Home</a></li>
 	    <li><a href="#search">Search</a></li>
 	    <li><a href="#movies">Movies</a></li>
+	    <li><a href="#graph">Graph</a></li>
  	   </ul>
    </nav>
    <div class="right">
@@ -22,6 +25,8 @@
    </div>
   </div>
   <div class="footer">Copyright &copy; Varshini.com</div>
+  <!-- inject:js -->
+ <!-- endinject -->
 </body>
 <script type="text/ng-template" id="home">
 <div>
@@ -87,5 +92,24 @@
     <p>{{selectedMovie.actor3}}</p>
    </div>
  </div></div>
-</script>		
+</script>	
+<script type="text/ng-template" id="graph">
+<div>
+     <div class="dib">
+       <select ng-model="year1">
+       		<option ng-repeat="x in getStartYear()">{{x}}</option>
+       </select>
+     </div>
+     <div class="dib"><h4>To</h4></div>
+     <div class="dib">
+       	<select ng-model="year2">
+       		<option ng-repeat="y in getEndYear()">{{y}}</option>
+       	</select>
+     </div>
+     <div class="dib"><input type="submit" value="Search1" ng-click="moviesByYear(year1,year2)"/></div>
+     <div id="chart">
+       <svg></svg>
+     </div>
+</div>
+</script>	
 </html>

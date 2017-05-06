@@ -1,5 +1,5 @@
 (function() {
-	var app = angular.module("app",["ngRoute", "searchModule","moviesModule"]);
+	var app = angular.module("app",["ngRoute","searchModule","moviesModule","graphModule"]);
 	
 	app.config(function($routeProvider) {
 	    $routeProvider
@@ -14,6 +14,10 @@
 	    .when("/movies", {
 	    	controller: "moviesCtrl",
 	        templateUrl : "movies"
+	    })
+	    .when("/graph", {
+	    	controller: "graphCtrl",
+	        templateUrl : "graph"
 	    });
 	});
 	
