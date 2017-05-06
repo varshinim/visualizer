@@ -1,16 +1,19 @@
 <script type="text/ng-template" id="graph">
 <div>
     <div class="dib">
-    	<select ng-model="year1">
+    	<select ng-model="startYear">
        		<option ng-repeat="x in getStartYear()">{{x}}</option>
        	</select>
-       </div>
-       <div class="dib"><h4>To</h4></div>
-       <div class="dib">
-       	<select ng-model="year2">
+     </div>
+     <div class="dib"><h4>To</h4></div>
+     <div class="dib">
+       	<select ng-model="endYear">
        		<option ng-repeat="y in getEndYear()">{{y}}</option>
        	</select>
-       </div>
-    <div class="dib"><input type="submit" value="Search1" ng-click="search1(year1,year2)"/></div>
+     </div>
+     <div class="dib"><input type="submit" value="Search" ng-click="moviesByYear(startYear, endYear)"/></div>
+     <div id="chart">
+       <svg></svg>
+     </div>
 </div>
 </script>

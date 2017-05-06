@@ -1,26 +1,43 @@
 <script type="text/ng-template" id="movies">
 <div>
-    <div class="dib">
-    	<select ng-model="year1">
+     <div class="dib">
+       <select ng-model="startYear">
        		<option ng-repeat="x in getStartYear()">{{x}}</option>
-       	</select>
-       </div>
-       <div class="dib"><h4>To</h4></div>
-       <div class="dib">
-       	<select ng-model="year2">
+       </select>
+     </div>
+     <div class="dib"><h4>To</h4></div>
+     <div class="dib">
+       	<select ng-model="endYear">
        		<option ng-repeat="y in getEndYear()">{{y}}</option>
        	</select>
-       </div>
-    <div class="dib"><input type="submit" value="Search1" ng-click="search1(year1,year2)"/></div>
+      </div>
+    <div class="dib"><input type="submit" value="Search" ng-click="moviesByYear(startYear,endYear)"/></div>
 </div>
-<table>
-	<tr>
-	<th>Movie</th>
-	<th>Released Year</th>
-   </tr>
-   <tr ng-repeat="movie in selectedYear">
-    <td>{{movie.title}}</td>
-    <td>{{movie.releaseYear}}</td>
-   </tr>
-</table>
-</script>
+<div class="dib">
+<div class="div-table">
+   <div class="div-table-row">
+      <div class="div-table-head">Movie</div>
+      <div class="div-table-head">Release Year</div>
+   </div>
+   <div class="div-table-row" ng-repeat="movie in movies">
+      <div class="div-table-col"><a ng-click="onMovieClick(movie)">{{movie.title}}</a></div>
+      <div class="div-table-col">{{movie.releaseYear}}</div>
+   </div>
+</div></div>
+ <div class="dib">
+<div class="div-table">
+   <div class="movie-details" ng-class="{ 'hidden': ! showDetails }">
+    <div ng-repeat="location in selectedMovie.locations">
+    <p>{{location.locationName}}</p>
+    <p>{{location.funFacts}}</p>
+    </div>
+   	<p>{{selectedMovie.productionCompany}}</p>
+   	<p>{{selectedMovie.distributor}}</p>
+    <p>{{selectedMovie.director}}</p>
+    <p>{{selectedMovie.writer}}</p>
+    <p>{{selectedMovie.actor1}}</p>
+    <p>{{selectedMovie.actor2}}</p>
+    <p>{{selectedMovie.actor3}}</p>
+   </div>
+ </div></div>
+</script>	

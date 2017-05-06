@@ -43,7 +43,7 @@
        <th>Movie</th>
        <th>Release Year</th>
       </tr>
-      <tr ng-repeat="movie in movieResults">
+      <tr ng-repeat="movie in searchResults">
        <td>{{movie.title}}</td>
        <td>{{movie.releaseYear}}</td>
       </tr>
@@ -53,17 +53,17 @@
 <script type="text/ng-template" id="movies">
 <div>
      <div class="dib">
-       <select ng-model="year1">
+       <select ng-model="startYear">
        		<option ng-repeat="x in getStartYear()">{{x}}</option>
        </select>
      </div>
      <div class="dib"><h4>To</h4></div>
      <div class="dib">
-       	<select ng-model="year2">
+       	<select ng-model="endYear">
        		<option ng-repeat="y in getEndYear()">{{y}}</option>
        	</select>
       </div>
-    <div class="dib"><input type="submit" value="Search1" ng-click="moviesByYear(year1,year2)"/></div>
+    <div class="dib"><input type="submit" value="Search" ng-click="moviesByYear(startYear,endYear)"/></div>
 </div>
 <div class="dib">
 <div class="div-table">
@@ -71,7 +71,7 @@
       <div class="div-table-head">Movie</div>
       <div class="div-table-head">Release Year</div>
    </div>
-   <div class="div-table-row" ng-repeat="movie in selectedYear">
+   <div class="div-table-row" ng-repeat="movie in movies">
       <div class="div-table-col"><a ng-click="onMovieClick(movie)">{{movie.title}}</a></div>
       <div class="div-table-col">{{movie.releaseYear}}</div>
    </div>
@@ -96,17 +96,17 @@
 <script type="text/ng-template" id="graph">
 <div>
      <div class="dib">
-       <select ng-model="year1">
+       <select ng-model="startYear">
        		<option ng-repeat="x in getStartYear()">{{x}}</option>
        </select>
      </div>
      <div class="dib"><h4>To</h4></div>
      <div class="dib">
-       	<select ng-model="year2">
+       	<select ng-model="endYear">
        		<option ng-repeat="y in getEndYear()">{{y}}</option>
        	</select>
      </div>
-     <div class="dib"><input type="submit" value="Search1" ng-click="moviesByYear(year1,year2)"/></div>
+     <div class="dib"><input type="submit" value="Search" ng-click="moviesByYear(startYear, endYear)"/></div>
      <div id="chart">
        <svg></svg>
      </div>

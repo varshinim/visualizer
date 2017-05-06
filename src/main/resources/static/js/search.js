@@ -12,13 +12,13 @@
 			$scope.error = "Could not find the movie";
 		};
 		
-		var selectedMovie = function(response){
-			$scope.movieResults = response.data;
+		var getSelectedMovie = function(response){
+			$scope.searchResults = response.data;
 		};
 	
 		$scope.search = function(name){
 			if (name) {
-				$http.get("/search?q=" +name).then(selectedMovie, onError);
+				$http.get("/search?q=" +name).then(getSelectedMovie, onError);
 			}
 		};
 	}

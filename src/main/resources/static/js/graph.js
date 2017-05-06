@@ -7,8 +7,8 @@
 		$scope.getStartYear = getYears;
 	    $scope.getEndYear = function() {
 		return getYears().filter(function(o){ 
-				if ($scope.year1) {
-					return o >= $scope.year1
+				if ($scope.startYear) {
+					return o >= $scope.startYear;
 				} else {
 					return o;
 				}
@@ -24,12 +24,11 @@
 		return arr;
 	}
 	
-	var onError = function(reason){
+	function onError(reason){
 		$scope.error = "Could not find the year";
 	};
 	
 	function moviesInYear(movies){
-		// [{title:, id:, releaseYear:}]
 		var dict = {};
 		var values = [];
 
@@ -42,18 +41,16 @@
 			}
 		}
 		
-		// dict = {2014: 2, 2015: 3};
 		for (var key in dict) {
 			values.push({label: key, value: dict[key]});
 		}
 		
-		// [{key: , values: [{key:, value:}]}]
 		return [{key: "Movie Graph", values: values}];
 	}
 
-	var selectedYear = function(response){
-		$scope.selectedYear = response.data;
-			
+	function plotGraph(response){
+		var movies = response.data;
+		
 		nv.addGraph(function() {
 			  var chart = nv.models.discreteBarChart()
 			    .x(function(d) { return d.label;})
@@ -62,7 +59,7 @@
 			    .showValues(true);
 
 			  d3.select('#chart svg')
-			    .datum(moviesInYear($scope.selectedYear))
+			    .datum(moviesInYear(movies))
 			    .transition().duration(500)
 			    .call(chart);
 
@@ -72,19 +69,14 @@
 			});
 	};
 	
-	$scope.moviesByYear = function(year1,year2){
-		if (year1 && year2) {
-			$http.get("/movies?startYear=" +year1+ "&endYear=" +year2).then(selectedYear, onError);
-		} else if ((year1 && !year2) || (!year1 && year2)) {
+	$scope.moviesByYear = function(startYear, endYear){
+		if (startYear && endYear) {
+			$http.get("/movies?startYear=" +startYear+ "&endYear=" +endYear).then(plotGraph, onError);
+		} else if ((startYear && !endYear) || (!startYear && endYear)) {
 			alert("please selected both years");
 		} else {
-			$http.get("/movies").then(selectedYear, onError);
+			$http.get("/movies").then(plotGraph, onError);
 		}
-	};
-	
-	$scope.onMovieClick = function(movie) {
-		$scope.showDetails = true;
-		$scope.selectedMovie = movie;
 	};
 }
 })();
